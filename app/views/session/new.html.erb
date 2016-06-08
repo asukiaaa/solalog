@@ -1,2 +1,7 @@
 <h1>Login</h1>
-<%= link_to 'facebook', oauth_facebook_session_path %>
+<%= link_to 'facebook',
+    "https://www.facebook.com/dialog/oauth?
+     client_id=#{ ENV['FACEBOOK_APPID'] }&
+     redirect_uri=#{ oauth_callback_url(provider: :facebook) }&
+     scope=email"
+    %>
