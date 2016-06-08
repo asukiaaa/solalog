@@ -2,13 +2,12 @@ Rails.application.routes.draw do
 
   root 'static#about'
 
-  get 'signin',  to: 'sessions#new',     as: :signin
-  get 'signout', to: 'sessions#destroy', as: :signout
-  get 'signup',  to: 'user#new',        as: :signup
+  get 'login',  to: 'session#new',     as: :login
+  get 'logout', to: 'session#destroy', as: :logout
 
-  resources :sessions
-  resources :password_resets
-  resource :user, only: [:new, :create]
+  resource :session do
+    get :oauth_facebook
+  end
   resource :contact, only: [:new, :create]
   resources :plants, only: [:index, :show]
 
@@ -25,7 +24,7 @@ Rails.application.routes.draw do
   end
 
   namespace :api do
-    resource :power_record, only: :post
+    resource :power_log, only: :create
   end
 
 end
