@@ -1,0 +1,31 @@
+*.rbc
+*.sassc
+.sass-cache
+capybara-*.html
+.rspec
+.rvmrc
+
+# Ignore bundle files.
+/.bundle
+/vendor/bundle
+
+# Ignore all logfiles and tempfiles.
+/log/*
+/tmp/*
+
+# Ignore database.yml
+config/database.yml
+
+/public/system/*
+/coverage/
+/spec/tmp/*
+**.orig
+rerun.txt
+pickle-email-*.html
+.project
+public/uploads/*
+public/assets
+
+# dotenv files
+.env.development
+.env.production
