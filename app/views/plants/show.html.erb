@@ -1,0 +1,10 @@
+<h1><%= @plant.name %></h1>
+<%= render partial: 'parts/graphs/power_logs_of_plant',
+    locals: { plant: @plant }
+    %>
+<%= render partial: 'parts/graphs/power_logs_of_plant',
+    locals: { plant: @plant, target_type: :voltage }
+    %>
+<%= render partial: 'parts/graphs/power_logs_of_plant',
+    locals: { plant: @plant, target_type: :ampere }
+    %>

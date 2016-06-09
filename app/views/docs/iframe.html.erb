@@ -1,0 +1,29 @@
+<h1>iframe examples</h1>
+<h2>normal</h2>
+<div class="docs-text">
+You can put log to your own web site with using iframe.<br>
+Like this.
+</div>
+
+<pre>
+&lt;iframe src="<%= plant_url( 'your-own-plant-uuid', embedded: true ) %>" height="300"&gt;&lt;/iframe&gt;
+</pre>
+
+<iframe
+  src="<%= plant_url( @plant.uuid, embedded: true ) %>"
+  height="300"
+></iframe>
+
+<h2>responsive</h2>
+<div class="docs-text">
+  You can set responsive width.
+</div>
+<pre>
+&lt;iframe src="<%= plant_url( 'your-own-plant-uuid', embedded: true ) %>" height="400" width="100%"&gt;&lt;/iframe&gt;
+</pre>
+
+<iframe
+  src="<%= plant_url( @plant.uuid, embedded: true ) %>"
+  height="300"
+  width="100%"
+></iframe>

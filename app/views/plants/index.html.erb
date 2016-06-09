@@ -1,0 +1,17 @@
+<h1>Solar Power Plants</h1>
+<% @plants.each do |plant| %>
+  <div class="plant-wrapper">
+    <%= link_to( plant_path( plant.uuid ) ) do %>
+      <div class="plant-name">
+        <%= plant.name %>
+      </div>
+      <% if plant.power_logs.present? %>
+        <%= render partial: 'parts/graphs/power_logs_of_plant',
+            locals: { plant: plant }
+            %>
+      <% else %>
+        No log.
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

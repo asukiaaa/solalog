@@ -7,16 +7,18 @@
   <div class="plants-wrapper">
     <% current_user.plants.each do |plant| %>
       <div class="plant-wrapper">
-        <div class="plant-name">
-          <%= link_to plant.name, private_plant_path(plant.uuid) %>
-        </div>
-        <div class="last-power-log">
+        <%= link_to ( private_plant_path(plant.uuid) ) do %>
+          <div class="plant-name">
+            <%= plant.name %>
+          </div>
           <% if plant.power_logs.blank? %>
             No log yet.
           <% else %>
-            <%= plant.power_logs.last.to_json %>
+            <%= render partial: 'parts/graphs/power_logs_of_plant',
+                locals: { plant: plant }
+                %>
           <% end %>
-          <div>
+        <% end %>
       </div>
     <% end %>
   </div>

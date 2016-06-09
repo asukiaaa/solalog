@@ -1,12 +1,20 @@
 <%
+  ## useage
+  # render partial: 'parts/graphs/power_logs_of_plant',
+  #   locals: { plant: @plant, target_type: :ampere }
+
   target_type ||= :watt # watt, ampere, voltage
-  if target_type.to_sym == :watt
-    graph_style ||= 'graph-style-green'
-  elsif target_type.to_sym == :voltage
+  if target_type.to_sym == :voltage
     graph_style ||= 'graph-style-blue'
   elsif target_type.to_sym == :ampere
     graph_style ||= 'graph-style-dark-red'
+  else # target_type.to_sym == :watt
+    # over write invalid target_type
+    target_type = :watt
+    graph_style ||= 'graph-style-green'
   end
+
+  hide_legend ||= false
 %>
 <%# example: http://visjs.org/examples/graph2d/04_rightAxis.html %>
 <div id="plant-graph-<%= plant.uuid %>-<%= target_type %>"></div>
@@ -40,9 +48,12 @@
   ];
   var dataset = new vis.DataSet(data);
   var options = {
-    legend: {right: {position: 'top-left'}},
+    <% unless hide_legend %>
+      legend: {right: {position: 'top-left'}},
+    <% end %>
     dataAxis: {icons: true},
     moveable: false,
+    height: (typeof(graph_height) !== 'undefined') ? graph_height : '300px',
     // dataAxis: {
     //   left: {
     //     range: {min: 0}

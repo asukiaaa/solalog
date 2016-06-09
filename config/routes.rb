@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'doc#about'
+  root 'docs#about'
 
   get 'login',  to: 'session#new',     as: :login
   get 'logout', to: 'session#destroy', as: :logout
@@ -14,11 +14,13 @@ Rails.application.routes.draw do
   resource :contact, only: [:new, :create]
   resources :plants, only: [:index, :show]
 
-  resource :doc, only: [] do
+  resource :docs, only: [] do
     get :about
+    get :iframe
   end
 
   namespace :private do
+    #resource :profile, only: [:edit, :update, :destroy], controller: 'profile'
     resource :dashboard, only: :show, controller: 'dashboard'
     resources :plants do
       resources :power_logs, only: :destroy

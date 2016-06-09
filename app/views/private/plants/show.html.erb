@@ -22,8 +22,9 @@
 <% if @plant.power_logs.blank? %>
   There is no log for "<%= @plant.name %>".<br>
   Please post data about this plant.<br>
-  This is an example code of python.
+<% end %>
 
+Logging code example in python.
 <pre>
 import requests
 r = requests.post('<%= api_v1_power_log_url %>',
@@ -35,8 +36,9 @@ r = requests.post('<%= api_v1_power_log_url %>',
 print r.text
 </pre>
 
-  If you want to try with curl, here you are.
 
+<% if @plant.power_logs.blank? %>
+  If you want to try with curl, here you are.
 <pre>
 curl '<%= api_v1_power_log_url %>' \
   -d 'voltage=38.2' \
@@ -45,13 +47,13 @@ curl '<%= api_v1_power_log_url %>' \
 </pre>
 <% else %>
 
-  <%= render partial: 'parts/graphs/power_logs_on_plant',
+  <%= render partial: 'parts/graphs/power_logs_of_plant',
       locals: { plant: @plant }
       %>
-  <%= render partial: 'parts/graphs/power_logs_on_plant',
+  <%= render partial: 'parts/graphs/power_logs_of_plant',
       locals: { plant: @plant, target_type: :voltage }
       %>
-  <%= render partial: 'parts/graphs/power_logs_on_plant',
+  <%= render partial: 'parts/graphs/power_logs_of_plant',
       locals: { plant: @plant, target_type: :ampere }
       %>
 

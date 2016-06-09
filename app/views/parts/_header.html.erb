@@ -1,8 +1,9 @@
+<%= link_to 'solar power plants', plants_path %>
 <% if current_user %>
   Hello.
   <%= current_user.name %>
   <%= link_to 'dashboard', private_dashboard_path %>
-  <%= link_to 'logout', logout_path %>
+  <%= link_to 'logout', logout_path, data: { confirm: 'Logout?' } %>
 <% else %>
   <%= link_to 'login', login_path %>
 <% end %>

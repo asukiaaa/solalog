@@ -1,0 +1,30 @@
+<div class="iframe-plant-name">
+  <%= @plant.name %>
+</div>
+<div class="iframe-powered-by">
+  Powered by <%= link_to 'Solalog', root_url, target: "_blank" %>
+</div>
+
+<script>
+  var window_height = $(window).height()
+  var plant_name_height = $('.iframe-plant-name').height()
+  var powerd_by_height = $('.iframe-powered-by').height()
+  var graph_height =
+    window_height
+    - plant_name_height
+    - powerd_by_height
+    - 16
+  console.log(graph_height)
+  // $('body').css('height', window_height)
+  // $('body').css('overflow', 'hidden')
+</script>
+
+<%= link_to( plant_url( @plant.uuid ), target: "_blank" ) do %>
+  <%= render partial: 'parts/graphs/power_logs_of_plant',
+      locals: {
+        plant: @plant,
+        target_type: @target_type,
+        hide_legend: true,
+      }
+      %>
+<% end %>
