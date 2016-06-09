@@ -1,0 +1,6 @@
+<h1>Edit plant.</h1>
+<%= form_for( @plant, url: private_plant_path( @plant.uuid ) ) do %>
+  <%= render partial: 'form', locals: {  plant: @plant } %>
+  <%= submit_tag "Update" %>
+<% end %>
+<%= link_to "back to \"#{@plant.name}\"", private_plant_path %>

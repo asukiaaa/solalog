@@ -1,0 +1,2 @@
+module Private::PlantsHelper
+end

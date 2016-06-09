@@ -61,14 +61,6 @@ class SessionController < ApplicationController
 
   private
 
-  def random_string ( min: 40, max: 50 )
-    random_max = (min + rand(max-min))
-    chars = ('a'..'z').to_a + ('A'..'Z').to_a + ('0'..'9').to_a
-    random_string = ""
-    random_max.times.map{ random_string += chars.sample }
-    random_string
-  end
-
   # This function is difficult to test
   def facebook_info_hash code
     # references:

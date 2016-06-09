@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'static#about'
+  root 'doc#about'
 
   get 'login',  to: 'session#new',     as: :login
   get 'logout', to: 'session#destroy', as: :logout
@@ -14,20 +14,19 @@ Rails.application.routes.draw do
   resource :contact, only: [:new, :create]
   resources :plants, only: [:index, :show]
 
-  # for static pages
-  resource :static, only: [] do
+  resource :doc, only: [] do
     get :about
   end
 
   namespace :private do
     resource :dashboard, only: :show, controller: 'dashboard'
     resources :plants
-    # playt has params: apikey, name
-    # plant has many owner, power_logs
   end
 
   namespace :api do
-    resource :power_log, only: :create
+    namespace :v0_0 do
+      resources :power_logs, only: [:index, :create]
+    end
   end
 
 end

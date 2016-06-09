@@ -2,7 +2,7 @@ class CreatePlants < ActiveRecord::Migration
   def change
     create_table :plants do |t|
       t.string :uuid, null: false
-      t.string :name
+      t.string :name, null: false
       t.text :description
       t.string :access_token, null: false
 

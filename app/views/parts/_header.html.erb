@@ -1,0 +1,7 @@
+<% if current_user %>
+  Hi, <%= current_user.name %>.
+  <%= link_to 'dashboard', private_dashboard_path %>
+  <%= link_to 'logout', logout_path %>
+<% else %>
+  <%= link_to 'login', login_path %>
+<% end %>

@@ -1,9 +1,23 @@
 <h1>Dashboard</h1>
-<p>Hi, <%= current_user.name %>.</p>
+
+<%= link_to 'Create new plant', new_private_plant_path %>
 
 <% if current_user.plants.present? %>
-  <% current_user.plants.each do |plant| %>
-  <% end %>
+  <h2>Plant list</h2>
+  <div class="plants-wrapper">
+    <% current_user.plants.each do |plant| %>
+      <div class="plant-wrapper">
+        <div class="plant-name">
+          <%= link_to plant.name, private_plant_path(plant.uuid) %>
+        </div>
+        <div class="last-power-log">
+          <% if plant.power_logs.blank? %>
+            No log yet.
+          <% else %>
+            <%= plant.power_logs.last %>
+          <% end %>
+          <div>
+      </div>
+    <% end %>
+  </div>
 <% end %>
-
-<%= link_to 'Create your plant', new_private_plant_path %>

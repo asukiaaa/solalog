@@ -1,0 +1,5 @@
+<h1>Create new plant.</h1>
+<%= form_for( @plant, url: private_plants_path ) do %>
+  <%= render partial: 'form', locals: {  plant: @plant } %>
+  <%= submit_tag "Create" %>
+<% end %>

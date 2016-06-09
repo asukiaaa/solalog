@@ -1,0 +1,47 @@
+<h1><%= @plant.name %></h1>
+
+<%= simple_format( @plant.description,
+                   {
+                     class: 'plant-description-wrapper',
+                   },
+                   {
+                     wrapper_tag: :div
+                   }) %>
+
+<div class="plant-menu-links">
+  <%= link_to 'edit',
+      edit_private_plant_path( @plant.uuid )
+      %>
+  <%= link_to 'delete',
+      private_plant_path( @plant.uuid ),
+      method: :delete,
+      data: { confirm: "Are you sure to delete \"#{@plant.name}\"?" }
+      %>
+</div>
+
+<% if @plant.power_logs.blank? %>
+  There is no log for "<%= @plant.name %>".<br>
+  Please post data about this plant.<br>
+  This is an example code of python.
+
+<pre>
+import requests
+r = requests.post('<%= api_v0_0_power_logs_url %>',
+  data = {
+    'voltage' : '38.2',
+    'ampere' : '1.6',
+    'access_token': '<%= @plant.access_token %>',
+  })
+print r.text
+</pre>
+<% end %>
+
+<div class="power-logs-wrapper">
+  <% @plant.power_logs.each do |power_log| %>
+    <div class="power-log">
+      <%= power_log %>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to 'back to dashboard', private_dashboard_path %>
