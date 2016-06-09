@@ -39,11 +39,6 @@ gem 'kaminari-bootstrap'
 # for search
 gem 'ransack'
 
-# for aouth
-gem 'omniauth'
-gem 'omniauth-twitter'
-gem 'omniauth-facebook'
-
 # for share
 gem 'social-share-button'
 

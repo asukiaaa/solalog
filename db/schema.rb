@@ -11,7 +11,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160608151018) do
+ActiveRecord::Schema.define(version: 20160609022333) do
+
+  create_table "plants", force: :cascade do |t|
+    t.string   "uuid",         limit: 255,   null: false
+    t.string   "name",         limit: 255
+    t.text     "description",  limit: 65535
+    t.string   "access_token", limit: 255,   null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "plants", ["uuid"], name: "index_plants_on_uuid", unique: true, using: :btree
+
+  create_table "power_logs", force: :cascade do |t|
+    t.integer  "plant_id",   limit: 4,                          null: false
+    t.decimal  "voltage",              precision: 20, scale: 4, null: false
+    t.decimal  "ampere",               precision: 20, scale: 4, null: false
+    t.datetime "logged_at",                                     null: false
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+  end
+
+  create_table "user_plants", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4, null: false
+    t.integer  "plant_id",   limit: 4, null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                 limit: 255, null: false

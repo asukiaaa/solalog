@@ -1,2 +1,9 @@
 <h1>Dashboard</h1>
 <p>Hi, <%= current_user.name %>.</p>
+
+<% if current_user.plants.present? %>
+  <% current_user.plants.each do |plant| %>
+  <% end %>
+<% end %>
+
+<%= link_to 'Create your plant', new_private_plant_path %>
