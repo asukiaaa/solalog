@@ -20,12 +20,15 @@ Rails.application.routes.draw do
 
   namespace :private do
     resource :dashboard, only: :show, controller: 'dashboard'
-    resources :plants
+    resources :plants do
+      resources :power_logs, only: :destroy
+    end
   end
 
-  namespace :api do
-    namespace :v0_0 do
-      resources :power_logs, only: [:index, :create]
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resource :power_log, only: :create, controller: 'power_log'
+      resources :plants, only: [:index, :show]
     end
   end
 

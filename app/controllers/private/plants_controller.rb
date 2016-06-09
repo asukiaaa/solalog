@@ -39,7 +39,7 @@ class Private::PlantsController < PrivateController
   def destroy
     @plant = target_plant
     @plant.destroy
-    redirect_to private_dashboard_path, note: "[#{@plant.name} was deleted.]"
+    redirect_to private_dashboard_path, note: "\"#{@plant.name}\" was deleted."
   end
 
   private

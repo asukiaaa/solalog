@@ -26,7 +26,7 @@
 
 <pre>
 import requests
-r = requests.post('<%= api_v0_0_power_logs_url %>',
+r = requests.post('<%= api_v1_power_log_url %>',
   data = {
     'voltage' : '38.2',
     'ampere' : '1.6',
@@ -34,14 +34,25 @@ r = requests.post('<%= api_v0_0_power_logs_url %>',
   })
 print r.text
 </pre>
-<% end %>
+<% else %>
 
-<div class="power-logs-wrapper">
-  <% @plant.power_logs.each do |power_log| %>
-    <div class="power-log">
-      <%= power_log %>
-    </div>
-  <% end %>
-</div>
+  <table class="power-logs-table">
+    <thead>
+    </thead>
+    <tbody>
+    <% @plant.power_logs.each do |power_log| %>
+      <div class="power-log">
+        <%= power_log.to_json %>
+        <%= link_to 'delete',
+            private_plant_power_log_path(plant_id: @plant.uuid, id: power_log.id),
+            method: :delete,
+            data: { confirm: "Are you sure to delete the power log at #{power_log.logged_at.to_s}?" }
+            %>
+      </div>
+    <% end %>
+    </tbody>
+  </div>
+
+<% end %>
 
 <%= link_to 'back to dashboard', private_dashboard_path %>

@@ -1,6 +1,6 @@
 <h1>Dashboard</h1>
 
-<%= link_to 'Create new plant', new_private_plant_path %>
+<%= link_to 'Create plant', new_private_plant_path %>
 
 <% if current_user.plants.present? %>
   <h2>Plant list</h2>
@@ -14,7 +14,7 @@
           <% if plant.power_logs.blank? %>
             No log yet.
           <% else %>
-            <%= plant.power_logs.last %>
+            <%= plant.power_logs.last.to_json %>
           <% end %>
           <div>
       </div>
