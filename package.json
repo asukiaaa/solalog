@@ -1,0 +1,11 @@
+{
+  "name": "solalog",
+  "version": "1.0.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git"
+  },
+  "dependencies": {
+    "vis": "^4.16.1"
+  }
+}

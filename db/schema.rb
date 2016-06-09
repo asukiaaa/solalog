@@ -26,10 +26,11 @@ ActiveRecord::Schema.define(version: 20160609022333) do
 
   create_table "power_logs", force: :cascade do |t|
     t.integer  "plant_id",     limit: 4,                            null: false
-    t.decimal  "voltage",                  precision: 20, scale: 4, null: false
-    t.decimal  "ampere",                   precision: 20, scale: 4, null: false
-    t.datetime "logged_at",                                         null: false
+    t.decimal  "voltage",                  precision: 20, scale: 4
+    t.decimal  "ampere",                   precision: 20, scale: 4
+    t.decimal  "watt",                     precision: 30, scale: 4, null: false
     t.string   "creator_info", limit: 255
+    t.datetime "logged_at",                                         null: false
     t.datetime "created_at",                                        null: false
     t.datetime "updated_at",                                        null: false
   end

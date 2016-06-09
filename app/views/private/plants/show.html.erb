@@ -34,24 +34,55 @@ r = requests.post('<%= api_v1_power_log_url %>',
   })
 print r.text
 </pre>
+
+  If you want to try with curl, here you are.
+
+<pre>
+curl '<%= api_v1_power_log_url %>' \
+  -d 'voltage=38.2' \
+  -d 'ampere=1.6' \
+  -d 'access_token=<%= @plant.access_token %>'
+</pre>
 <% else %>
+
+  <%= render partial: 'parts/graphs/power_logs_on_plant',
+      locals: { plant: @plant }
+      %>
+  <%= render partial: 'parts/graphs/power_logs_on_plant',
+      locals: { plant: @plant, target_type: :voltage }
+      %>
+  <%= render partial: 'parts/graphs/power_logs_on_plant',
+      locals: { plant: @plant, target_type: :ampere }
+      %>
 
   <table class="power-logs-table">
     <thead>
+      <th>watt</th>
+      <th>voltage</th>
+      <th>ampere</th>
+      <th>logged at</th>
+      <th>creator info</th>
+      <th>action</th>
     </thead>
     <tbody>
-    <% @plant.power_logs.each do |power_log| %>
-      <div class="power-log">
-        <%= power_log.to_json %>
-        <%= link_to 'delete',
-            private_plant_power_log_path(plant_id: @plant.uuid, id: power_log.id),
-            method: :delete,
-            data: { confirm: "Are you sure to delete the power log at #{power_log.logged_at.to_s}?" }
-            %>
-      </div>
-    <% end %>
+      <% @plant.power_logs.each do |power_log| %>
+        <tr>
+          <td><%= power_log.watt %></td>
+          <td><%= power_log.voltage %></td>
+          <td><%= power_log.ampere %></td>
+          <td><%= power_log.logged_at.strftime('%Y-%M-%D %H:%M') %></td>
+          <td><%= power_log.creator_info %></td>
+          <td>
+            <%= link_to 'delete',
+                private_plant_power_log_path(plant_id: @plant.uuid, id: power_log.id),
+                method: :delete,
+                data: { confirm: "Are you sure to delete the power log at #{power_log.logged_at.to_s}?" }
+                %>
+          <td>
+        </tr>
+      <% end %>
     </tbody>
-  </div>
+  </table>
 
 <% end %>
 

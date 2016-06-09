@@ -1,0 +1,22 @@
+@mixin graph-style( $color ) {
+  fill: $color;
+  fill-opacity: 0;
+  stroke-width: 2px;
+  stroke: $color;
+}
+
+.graph-style-green {
+  @include graph-style( #75c841 );
+}
+.graph-style-blue {
+  @include graph-style( #4f81bd );
+}
+.graph-style-dark-red {
+  @include graph-style( #d67777 );
+}
+.graph-style-pink {
+  @include graph-style( #ec69a6 );
+}
+.graph-style-yellow {
+  @include graph-style( #ece75d );
+}

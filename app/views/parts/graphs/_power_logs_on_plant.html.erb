@@ -1,0 +1,53 @@
+<%
+  target_type ||= :watt # watt, ampere, voltage
+  if target_type.to_sym == :watt
+    graph_style ||= 'graph-style-green'
+  elsif target_type.to_sym == :voltage
+    graph_style ||= 'graph-style-blue'
+  elsif target_type.to_sym == :ampere
+    graph_style ||= 'graph-style-dark-red'
+  end
+%>
+<%# example: http://visjs.org/examples/graph2d/04_rightAxis.html %>
+<div id="plant-graph-<%= plant.uuid %>-<%= target_type %>"></div>
+
+<script type="text/javascript">
+  var container = document.getElementById('plant-graph-<%= plant.uuid %>-<%= target_type %>');
+  var groups = new vis.DataSet();
+  groups.add({
+    id: 0,
+    content: '<%= target_type %>',
+    className: '<%= graph_style %>',
+    options: {
+      drawPoints: {
+        style: 'circle'
+      },
+      shaded: {
+        orientation: 'bottom'
+      },
+    },
+  });
+
+  var data = [
+  <% plant.power_logs.each do |power_log| %>
+    <% next if power_log.send(target_type).blank? %>
+    {
+      group: 0,
+      x: '<%= power_log.logged_at.strftime('%Y-%m-%d %H:%M') %>',
+      y: <%= power_log.send(target_type) %>
+    },
+  <% end %>
+  ];
+  var dataset = new vis.DataSet(data);
+  var options = {
+    legend: {right: {position: 'top-left'}},
+    dataAxis: {icons: true},
+    moveable: false,
+    // dataAxis: {
+    //   left: {
+    //     range: {min: 0}
+    //   }
+    // },
+  };
+  var timeline = new vis.Graph2d(container, dataset, groups, options);
+</script>
