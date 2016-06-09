@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   end
 
   namespace :private do
-    resource :dashboard, only: :show
+    resource :dashboard, only: :show, controller: 'dashboard'
     resources :plants
     # playt has params: apikey, name
     # plant has many owner, power_logs
