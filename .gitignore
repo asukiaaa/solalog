@@ -29,6 +29,7 @@ public/assets
 # dotenv files
 .env.development
 .env.production
+.env.staging
 
 # npm packages
 node_modules
