@@ -4,6 +4,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include RandomString
 
+  if Rails.env.staging?
+    http_basic_authenticate_with( name:     ENV['BASIC_AUTH_NAME'] || 'solalog',
+                                  password: ENV['BASIC_AUTH_PASS'] || 'staging' )
+  end
+
   def get_hash_of_request_json_from url
     uri = URI(url)
     request_json = Net::HTTP.get(uri)
