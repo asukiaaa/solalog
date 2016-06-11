@@ -33,3 +33,8 @@ public/assets
 
 # npm packages
 node_modules
+
+# capfiles
+Capfile
+config/deploy.rb
+config/deploy/*
