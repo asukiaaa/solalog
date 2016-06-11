@@ -47,8 +47,12 @@ group :development do
   #gem 'binding_of_caller'
   # Deploy with Capistrano
   gem 'capistrano'
+  gem 'capistrano-rbenv'
   gem 'capistrano-rails'
   gem 'capistrano-bundler'
+  gem 'capistrano-npm'
+  # gem 'capistrano3-unicorn'
+  # gem 'capistrano-unicorn-nginx'
 end
 
 group :development, :test, :staging do
