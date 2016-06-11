@@ -8,6 +8,11 @@ A rails application for logging output from solar power plants.
 
 # Flow of deploying
 For staging.
+## Create .env file
+```
+cp .env.example .env.staging
+```
+Fill them for your environment.
 
 ## Create files for capistrano.
 ```
