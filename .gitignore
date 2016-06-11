@@ -38,3 +38,8 @@ node_modules
 Capfile
 config/deploy.rb
 config/deploy/*
+
+# cache or backup files
+.#*
+#*
+~*
