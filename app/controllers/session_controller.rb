@@ -6,7 +6,6 @@ class SessionController < ApplicationController
   end
 
   def oauth_callback
-    pp params
 
     if params[:provider].to_sym == :facebook
 
