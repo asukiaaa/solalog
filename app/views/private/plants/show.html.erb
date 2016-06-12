@@ -27,10 +27,14 @@
 Logging code example in python.
 <pre>
 import requests
+
+voltage = 38.2
+ampere  = 1.6
+
 r = requests.post('<%= api_v1_power_log_url %>',
   data = {
-    'voltage' : '38.2',
-    'ampere' : '1.6',
+    'voltage' : voltage,
+    'ampere'  : ampere,
     'access_token': '<%= @plant.access_token %>',
   })
 print r.text
