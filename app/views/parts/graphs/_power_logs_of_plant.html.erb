@@ -17,10 +17,14 @@
   end
 
   plant ||= nil
+  power_logs ||= nil
+  plant_id ||= nil
   if plant.present?
     power_logs ||= plant.power_logs.last(100)
   end
-  plant_id = power_logs.first.plant_id
+  if power_logs.present?
+    plant_id = power_logs.first.plant_id
+  end
 
   hide_legend ||= false
 %>
