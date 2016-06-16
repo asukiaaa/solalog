@@ -6,24 +6,28 @@ Like this.
 </div>
 
 <pre>
-&lt;iframe src="<%= plant_url( 'your-own-plant-uuid', embedded: true ) %>" height="300"&gt;&lt;/iframe&gt;
+&lt;iframe src="<%= plant_url( 'your-own-plant-id', embedded: true ) %>" height="300"&gt;&lt;/iframe&gt;
 </pre>
 
-<iframe
-  src="<%= plant_url( @plant.uuid, embedded: true ) %>"
-  height="300"
-></iframe>
+<% if @plant.present? %>
+  <iframe
+     src="<%= plant_url( @plant, embedded: true ) %>"
+     height="300"
+     ></iframe>
+<% end %>
 
 <h2>responsive</h2>
 <div class="docs-text">
   You can set responsive width.
 </div>
 <pre>
-&lt;iframe src="<%= plant_url( 'your-own-plant-uuid', embedded: true ) %>" height="400" width="100%"&gt;&lt;/iframe&gt;
+&lt;iframe src="<%= plant_url( 'your-own-plant-id', embedded: true ) %>" height="400" width="100%"&gt;&lt;/iframe&gt;
 </pre>
 
-<iframe
-  src="<%= plant_url( @plant.uuid, embedded: true ) %>"
-  height="300"
-  width="100%"
-></iframe>
+<% if @plant.present? %>
+  <iframe
+     src="<%= plant_url( @plant, embedded: true ) %>"
+     height="300"
+     width="100%"
+     ></iframe>
+<% end %>

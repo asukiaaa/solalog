@@ -1,7 +1,17 @@
-<h1>What is "solar log"?</h1>
+<h1>What is "solarlog"?</h1>
 <p>
   It is a logging system of power supply from solar panels.<br>
   You can check the log power on internet.<br>
   By using iframe, you can show the log at your website.
 </p>
-<%= link_to 'login', login_path %>
+
+<% if @plant.present? %>
+  <%= link_to plant_path(@plant) do %>
+    <%= render partial: 'parts/graphs/power_logs_of_plant',
+        locals: { plant: @plant }
+        %>
+  <% end %>
+<% end %>
+
+<%= link_to 'see more plants', plants_path %><br>
+<%= link_to 'login or signup', login_path %> to record your plant.

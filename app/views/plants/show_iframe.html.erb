@@ -19,7 +19,7 @@
   // $('body').css('overflow', 'hidden')
 </script>
 
-<%= link_to( plant_url( @plant.uuid ), target: "_blank" ) do %>
+<%= link_to( plant_url( @plant ), target: "_blank" ) do %>
   <%= render partial: 'parts/graphs/power_logs_of_plant',
       locals: {
         plant: @plant,

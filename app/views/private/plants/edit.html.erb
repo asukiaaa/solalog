@@ -1,5 +1,5 @@
 <h1>Edit plant.</h1>
-<%= form_for( @plant, url: private_plant_path( @plant.uuid ) ) do %>
+<%= form_for( @plant, url: private_plant_path( @plant ) ) do %>
   <%= render partial: 'form', locals: {  plant: @plant } %>
   <%= submit_tag "Update" %>
 <% end %>

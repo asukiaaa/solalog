@@ -4,8 +4,7 @@ module Api
       skip_before_action :verify_authenticity_token
 
       def create
-        access_token = params[:access_token]
-        plant = Plant.find_by(access_token: access_token)
+        plant = Plant.find_by(api_key: params[:api_key])
 
         if plant.blank?
           render json: { message: 'invalid token' }, status: 404

@@ -10,7 +10,7 @@ class Private::PlantsController < PrivateController
     @plant = Plant.new( plant_params )
     if @plant.save
       current_user.plants << @plant
-      redirect_to private_plant_path( @plant.uuid )
+      redirect_to private_plant_path( @plant )
     else
       flash[:alert] = 'crate error'
       flash.now
@@ -32,7 +32,7 @@ class Private::PlantsController < PrivateController
   def update
     @plant = target_plant
     if @plant.update( plant_params )
-      redirect_to private_plant_path( @plant.uuid )
+      redirect_to private_plant_path( @plant )
     else
       flash[:alert] = 'update error'
       flash.now
@@ -49,7 +49,7 @@ class Private::PlantsController < PrivateController
   private
 
   def target_plant
-    plant = current_user.plants.find_by( uuid: params[:id] )
+    plant = current_user.plants.find( params[:id] )
     raise ActiveRecord::RecordNotFound and return if plant.blank?
     plant
   end

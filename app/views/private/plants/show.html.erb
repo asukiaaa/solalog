@@ -10,10 +10,10 @@
 
 <div class="plant-menu-links">
   <%= link_to 'edit',
-      edit_private_plant_path( @plant.uuid )
+      edit_private_plant_path( @plant )
       %>
   <%= link_to 'delete',
-      private_plant_path( @plant.uuid ),
+      private_plant_path( @plant ),
       method: :delete,
       data: { confirm: "Are you sure to delete \"#{@plant.name}\"?" }
       %>
@@ -35,7 +35,7 @@ r = requests.post('<%= api_v1_power_log_url %>',
   data = {
     'voltage' : voltage,
     'ampere'  : ampere,
-    'access_token': '<%= @plant.access_token %>',
+    'api_key': '<%= @plant.api_key %>',
   })
 print r.text
 </pre>
@@ -47,7 +47,7 @@ print r.text
 curl '<%= api_v1_power_log_url %>' \
   -d 'voltage=38.2' \
   -d 'ampere=1.6' \
-  -d 'access_token=<%= @plant.access_token %>'
+  -d 'api_key=<%= @plant.api_key %>'
 </pre>
 <% else %>
 
@@ -80,7 +80,7 @@ curl '<%= api_v1_power_log_url %>' \
           <td><%= power_log.creator_info %></td>
           <td>
             <%= link_to 'delete',
-                private_plant_power_log_path(plant_id: @plant.uuid, id: power_log.id),
+                private_plant_power_log_path(plant_id: @plant, id: power_log.id),
                 method: :delete,
                 data: { confirm: "Are you sure to delete the power log at #{power_log.logged_at.to_s}?" }
                 %>

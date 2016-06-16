@@ -1,7 +1,7 @@
 <h1>Solar Power Plants</h1>
 <% @plants.each do |plant| %>
   <div class="plant-wrapper">
-    <%= link_to( plant_path( plant.uuid ) ) do %>
+    <%= link_to( plant_path( plant ) ) do %>
       <div class="plant-name">
         <%= plant.name %>
       </div>

@@ -7,7 +7,7 @@
   <div class="plants-wrapper">
     <% current_user.plants.each do |plant| %>
       <div class="plant-wrapper">
-        <%= link_to ( private_plant_path(plant.uuid) ) do %>
+        <%= link_to ( private_plant_path(plant) ) do %>
           <div class="plant-name">
             <%= plant.name %>
           </div>

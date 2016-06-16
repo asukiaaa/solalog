@@ -4,7 +4,7 @@ class PlantsController < ApplicationController
   end
 
   def show
-    @plant = Plant.find_by(uuid: params[:id])
+    @plant = Plant.find(params[:id])
 
     if params[:embedded]
       @target_type = params[:target_type]
