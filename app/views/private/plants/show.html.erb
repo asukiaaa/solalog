@@ -41,7 +41,7 @@ print r.text
 </pre>
 
 
-<% if @plant.power_logs.blank? %>
+<% if @power_logs.blank? %>
   If you want to try with curl, here you are.
 <pre>
 curl '<%= api_v1_power_log_url %>' \
@@ -52,13 +52,13 @@ curl '<%= api_v1_power_log_url %>' \
 <% else %>
 
   <%= render partial: 'parts/graphs/power_logs_of_plant',
-      locals: { plant: @plant }
+      locals: { power_logs: @power_logs }
       %>
   <%= render partial: 'parts/graphs/power_logs_of_plant',
-      locals: { plant: @plant, target_type: :voltage }
+      locals: { power_logs: @power_logs, target_type: :voltage }
       %>
   <%= render partial: 'parts/graphs/power_logs_of_plant',
-      locals: { plant: @plant, target_type: :ampere }
+      locals: { power_logs: @power_logs, target_type: :ampere }
       %>
 
   <table class="power-logs-table">
@@ -71,7 +71,7 @@ curl '<%= api_v1_power_log_url %>' \
       <th>action</th>
     </thead>
     <tbody>
-      <% @plant.power_logs.each do |power_log| %>
+      <% @power_logs.each do |power_log| %>
         <tr>
           <td><%= power_log.watt %></td>
           <td><%= power_log.voltage %></td>
@@ -90,6 +90,9 @@ curl '<%= api_v1_power_log_url %>' \
     </tbody>
   </table>
 
+  <div class="pagination-wrapper">
+    <%= paginate @power_logs %>
+  </div>
 <% end %>
 
 <%= link_to 'back to dashboard', private_dashboard_path %>

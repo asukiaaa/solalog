@@ -1,5 +1,6 @@
 class Private::PlantsController < PrivateController
   include RandomString
+  POWER_LOGS_PER_PAGE = 100
 
   def new
     @plant = Plant.new
@@ -19,6 +20,9 @@ class Private::PlantsController < PrivateController
 
   def show
     @plant = target_plant
+    @power_logs = target_plant.power_logs
+      .page(params[:page])
+      .per(POWER_LOGS_PER_PAGE)
   end
 
   def edit

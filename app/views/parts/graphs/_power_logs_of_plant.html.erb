@@ -2,6 +2,8 @@
   ## useage
   # render partial: 'parts/graphs/power_logs_of_plant',
   #   locals: { plant: @plant, target_type: :ampere }
+  # render partial: 'parts/graphs/power_logs_of_plant',
+  #   locals: { power_logs: @power_logs, target_type: :ampere }
 
   target_type ||= :watt # watt, ampere, voltage
   if target_type.to_sym == :voltage
@@ -14,13 +16,19 @@
     graph_style ||= 'graph-style-green'
   end
 
+  plant ||= nil
+  if plant.present?
+    power_logs ||= plant.power_logs.last(100)
+  end
+  plant_id = power_logs.first.plant_id
+
   hide_legend ||= false
 %>
 <%# example: http://visjs.org/examples/graph2d/04_rightAxis.html %>
-<div id="plant-graph-<%= plant.uuid %>-<%= target_type %>"></div>
+<div id="plant-graph-<%= plant_id %>-<%= target_type %>"></div>
 
 <script type="text/javascript">
-  var container = document.getElementById('plant-graph-<%= plant.uuid %>-<%= target_type %>');
+  var container = document.getElementById('plant-graph-<%= plant_id %>-<%= target_type %>');
   var groups = new vis.DataSet();
   groups.add({
     id: 0,
@@ -37,7 +45,7 @@
   });
 
   var data = [
-  <% plant.power_logs.each do |power_log| %>
+  <% power_logs.each do |power_log| %>
     <% next if power_log.send(target_type).blank? %>
     {
       group: 0,
