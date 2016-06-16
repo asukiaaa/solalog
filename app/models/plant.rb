@@ -13,4 +13,8 @@ class Plant < ActiveRecord::Base
     end while Plant.exists?(api_key: self.api_key)
   end
 
+  def power_logs_by_date
+    self.power_logs.order(logged_at: :desc)
+  end
+
 end

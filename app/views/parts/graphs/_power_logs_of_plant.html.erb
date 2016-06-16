@@ -20,7 +20,7 @@
   power_logs ||= nil
   plant_id ||= nil
   if plant.present?
-    power_logs ||= plant.power_logs.last(100)
+    power_logs ||= plant.power_logs_by_date.last(100)
   end
   if power_logs.present?
     plant_id = power_logs.first.plant_id

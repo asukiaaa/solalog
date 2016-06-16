@@ -20,7 +20,7 @@ class Private::PlantsController < PrivateController
 
   def show
     @plant = target_plant
-    @power_logs = target_plant.power_logs
+    @power_logs = target_plant.power_logs_by_date
       .page(params[:page])
       .per(POWER_LOGS_PER_PAGE)
   end
