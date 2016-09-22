@@ -32,7 +32,8 @@ Rails.application.routes.draw do
       resource :power_log, only: :create, controller: 'power_log'
       resources :plants, only: [:index, :show]
       resource :test, only: [], controller: 'test' do
-        post :geo
+        post :post_geo
+        get :get_geo
       end
     end
   end
